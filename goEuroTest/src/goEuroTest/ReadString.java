@@ -83,13 +83,10 @@ public class ReadString {
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
 		String inputLine;
-		StringBuffer response = new StringBuffer();
 		 
 		 while ((inputLine= in.readLine()) != null) {
-			 response.append(inputLine);
-			 inputLine = inputLine.replace("[", "{value:[").replace("]", "]}");
-			 JSONObject output= new JSONObject(inputLine);
-			   JSONArray docs = output.getJSONArray("value");
+
+			 JSONArray docs= new JSONArray(inputLine);
 
 			   for(int i=0; i<docs.length();i++){
 			       JSONObject geo_pos =  (JSONObject)(docs.getJSONObject(i).getJSONObject("geo_position"));
